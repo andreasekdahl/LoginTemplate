@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">LoginTemplate</string>
+
+    <string name="login_button_text">Login</string>
+
+    <string name="login_emailInput_text">Email</string>
+
+    <string name="login_passwordInput_text">Password</string>
+
+</resources>
