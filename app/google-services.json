@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "222859135538",
+    "project_id": "logintemplate-proj",
+    "storage_bucket": "logintemplate-proj.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:222859135538:android:82bfa6cde5319db1a08a2b",
+        "android_client_info": {
+          "package_name": "se.inlight"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSYlxFWh5LxtxezAI96j8_PlJ_0O7kSto"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:222859135538:android:c6e2b12d828f516ba08a2b",
+        "android_client_info": {
+          "package_name": "se.inlight.logintemplate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSYlxFWh5LxtxezAI96j8_PlJ_0O7kSto"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

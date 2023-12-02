@@ -1,6 +1,7 @@
 package se.inlight.logintemplate
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
@@ -36,12 +37,17 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.google.firebase.Firebase
+import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.auth
+//import com.google.firebase.ktx.Firebase
 import se.inlight.logintemplate.ui.theme.LoginTemplateTheme
 
 class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FirebaseApp.initializeApp(this)
         setContent {
             LoginTemplateTheme {
                 // A surface container using the 'background' color from the theme
@@ -115,6 +121,7 @@ fun LoginScreen() {
         Button(
             onClick = {
                 // Perform login logic here
+                performLogin(email, password)
             },
             modifier = Modifier
                 .fillMaxWidth()
@@ -122,7 +129,58 @@ fun LoginScreen() {
         ) {
             Text(stringResource(id = R.string.login_button_text))
         }
+
+        Button(
+            onClick = {
+                // Perform login logic here
+                //performLogin(email, password)
+                createAccount(email, password)
+
+            },
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(56.dp)
+        ) {
+            Text(stringResource(id = R.string.create_button_text))
+        }
     }
+}
+
+fun performLogin(email: String, password: String) {
+    val auth = Firebase.auth
+    auth.signInWithEmailAndPassword(email, password)
+        .addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                // Login successful
+                val user = auth.currentUser
+                // Handle success, navigate to the next screen, etc.
+            } else {
+                // If sign-in fails, display a message to the user.
+                val message = task.exception?.message
+//                    Toast.makeText(
+//                        LocalContext.current,
+//                        "Authentication failed: ${task.exception?.message}",
+//                        Toast.LENGTH_SHORT
+//                    ).show()
+                println(message)
+            }
+        }
+}
+
+fun createAccount(email: String, password: String) {
+    val auth = Firebase.auth
+    auth.createUserWithEmailAndPassword(email, password)
+        .addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                // Account creation successful
+                val user = auth.currentUser
+                // Handle success, navigate to the next screen, etc.
+            } else {
+                // If account creation fails, display a message to the user.
+                val message = task.exception?.message
+                println("Account creation failed: $message")
+            }
+        }
 }
 
 @Preview(showBackground = true)
